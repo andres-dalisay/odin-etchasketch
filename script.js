@@ -1,21 +1,10 @@
 const canvas = document.querySelector("#canvas");
+const DEFAULT_SQUARES = 16;
+const CANVAS_SIZE = 720;
 
-
-for (let i = 0; i < 256; i++) {
-    const square = document.createElement("div");
-    square.style.height = "62.5px";
-    square.style.width = "62.5px";
-    square.setAttribute("class", "square");
-    square.addEventListener("mouseover", (e) => {
-        square.classList.add("filled")
-    });
-    canvas.appendChild(square);
-}
-
-
-function rerenderGrid(squaresPerSide) {
+function renderGrid(squaresPerSide) {
     const squaresAmt = squaresPerSide * squaresPerSide;
-    const sizePerSquare = Math.round((1000 / squaresPerSide) * 1000) / 1000;
+    const sizePerSquare = CANVAS_SIZE / squaresPerSide;
 
     canvas.replaceChildren();
     for (let i = 0; i < squaresAmt; i++) {
@@ -33,5 +22,9 @@ function rerenderGrid(squaresPerSide) {
 const editSquaresBtn = document.querySelector("#edit-squares-btn");
 editSquaresBtn.addEventListener("click", (e) => {
     const squareAmt = prompt("Enter number of squares per side");
-    rerenderGrid(squareAmt);
+    renderGrid(squareAmt);
 });
+
+canvas.style.width = CANVAS_SIZE + "px";
+
+renderGrid(DEFAULT_SQUARES);

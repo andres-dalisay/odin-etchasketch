@@ -12,8 +12,6 @@
 #canvas {
     display: flex;
     flex-wrap: wrap;
-    width: 1000px;
-    background-color: green;
 }
 
 .filled {

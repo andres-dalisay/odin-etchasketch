@@ -18,3 +18,7 @@
     width: 672px;
     background-color: green;
 }
+
+.filled {
+    background-color: black;
+}

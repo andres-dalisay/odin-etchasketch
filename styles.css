@@ -1,6 +1,15 @@
 .square {
-    height:50px;
-    width: 50px;
+    height:40px;
+    width: 40px;
     background-color: gray;
     border: black solid 1px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+#canvas {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
 }

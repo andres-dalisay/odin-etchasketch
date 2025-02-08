@@ -1,6 +1,11 @@
-const canvas = document.querySelector("#canvas");
 const DEFAULT_SQUARES = 16;
 const CANVAS_SIZE = 720;
+const canvas = document.querySelector("#canvas");
+const rgbToggle = document.querySelector("#rgb-toggle");
+
+function randomRGBValue() {
+    return Math.floor(Math.random() * 256);
+}
 
 function renderGrid(squaresPerSide) {
     const squaresAmt = squaresPerSide * squaresPerSide;
@@ -13,7 +18,11 @@ function renderGrid(squaresPerSide) {
         square.style.height = sizePerSquare + "px";
         square.style.width = sizePerSquare + "px";
         square.addEventListener("mouseover", (e) => {
-            square.classList.add("filled")
+            if (!square.classList.contains("filled")){
+                if (rgbToggle.checked)
+                    square.style.backgroundColor = "rgb(" + randomRGBValue() + "," + randomRGBValue() + "," + randomRGBValue() + ")"
+                    square.classList.add("filled");
+            }
         });
         canvas.appendChild(square);
     }
@@ -24,6 +33,7 @@ editSquaresBtn.addEventListener("click", (e) => {
     const squareAmt = prompt("Enter number of squares per side");
     renderGrid(squareAmt);
 });
+
 
 canvas.style.width = CANVAS_SIZE + "px";
 

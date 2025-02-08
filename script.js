@@ -1,6 +1,5 @@
 const canvas = document.querySelector("#canvas");
 
-let squares = [];
 
 for (let i = 0; i < 256; i++) {
     const square = document.createElement("div");
@@ -10,30 +9,25 @@ for (let i = 0; i < 256; i++) {
     square.addEventListener("mouseover", (e) => {
         square.classList.add("filled")
     });
-    squares.push(square);
+    canvas.appendChild(square);
 }
 
-canvas.replaceChildren(...squares);
 
 function rerenderGrid(squaresPerSide) {
     const squaresAmt = squaresPerSide * squaresPerSide;
     const sizePerSquare = Math.round((1000 / squaresPerSide) * 1000) / 1000;
 
-    squares = [];
+    canvas.replaceChildren();
     for (let i = 0; i < squaresAmt; i++) {
         const square = document.createElement("div");
         square.setAttribute("class", "square");
-        squares.forEach((square) => {
-            canvas.appendChild(square);
-        });
         square.style.height = sizePerSquare + "px";
         square.style.width = sizePerSquare + "px";
         square.addEventListener("mouseover", (e) => {
             square.classList.add("filled")
         });
-        squares.push(square);
+        canvas.appendChild(square);
     }
-    canvas.replaceChildren(...squares);
 }
 
 const editSquaresBtn = document.querySelector("#edit-squares-btn");
